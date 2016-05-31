@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_add_to_calendar"
+    tools:context="com.apexcomputerservice.thirtydaysout.AddToCalendar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:padding="26dp"
+   >
+
+
+    <!-- app:layout_behavior="@string/appbar_scrolling_view_behavior" -->
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDate"
+        android:text="@string/atc_tvDate"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/atc_tvTitle"
+        android:id="@+id/tvTitle"
+        android:layout_above="@+id/cbAllDay"
+        android:layout_alignLeft="@+id/tvDate"
+        android:layout_alignStart="@id/tvDate"
+        android:layout_alignEnd="@+id/tvDescription"
+        android:layout_alignRight="@id/tvDescription"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etTitle"
+        android:hint="@string/atc_etTitle"
+        android:layout_below="@+id/tvDate"
+        android:layout_alignRight="@+id/tvDate"
+        android:layout_alignEnd="@+id/tvDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/atc_tvTime"
+        android:id="@+id/tvTime"
+        android:layout_alignBottom="@+id/cbAllDay"
+        android:layout_alignLeft="@+id/tvTitle"
+        android:layout_alignStart="@+id/tvTitle" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/atc_cbAllDay"
+        android:id="@+id/cbAllDay"
+        android:layout_below="@+id/etTitle"
+        android:checked="true"
+        android:layout_centerHorizontal="true" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:paddingBottom="0dp"
+        android:layout_below="@+id/cbAllDay"
+        android:layout_above="@+id/etDescrip"
+        android:layout_alignLeft="@+id/cbAllDay"
+        android:layout_alignStart="@id/cbAllDay"
+        android:layout_alignEnd="@+id/tvDate"
+        android:layout_alignRight="@id/tvDate"
+        android:id="@+id/gridLayout"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/atc_tvStartTime"
+            android:id="@+id/tvStartTime"
+            android:gravity="center"
+            android:layout_row="0"
+            android:layout_column="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/atc_tvEndTime"
+            android:id="@+id/tvEndTime"
+            android:gravity="center"
+            android:layout_row="0"
+            android:layout_column="2" />
+
+        <EditText
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:ems="3"
+            android:text="@string/atc_etStartTime"
+            android:id="@+id/etStartTime"
+            android:onClick="getStartTimePicker"
+            android:layout_row="1"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:ems="3"
+            android:text="@string/atc_etEndTime"
+            android:id="@+id/etEndTime"
+            android:onClick="getEndTimePicker"
+            android:layout_row="1"
+            android:layout_column="2" />
+    </GridLayout>
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/etDescrip"
+        android:hint="@string/atc_etDescrip"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/gridLayout"
+        android:layout_alignStart="@+id/gridLayout" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/atc_tvDescription"
+        android:id="@+id/tvDescription"
+        android:layout_alignBottom="@+id/etDescrip"
+        android:layout_alignLeft="@+id/tvDate"
+        android:layout_alignStart="@+id/tvDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/atc_tvEmail"
+        android:id="@+id/tvEmail"
+        android:layout_alignBottom="@+id/etEmails"
+        android:layout_toLeftOf="@+id/etEmails"
+        android:layout_toStartOf="@+id/etEmails"
+        android:layout_alignLeft="@id/tvDate"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/etEmails"
+        android:hint="@string/atc_etEmail"
+        android:layout_below="@+id/etDescrip"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/atc_bSetAppt"
+        android:id="@+id/bSetAppt"
+        android:layout_below="@id/etEmails"
+        android:layout_centerHorizontal="true" />
+
+
+
+
+</RelativeLayout>
+
