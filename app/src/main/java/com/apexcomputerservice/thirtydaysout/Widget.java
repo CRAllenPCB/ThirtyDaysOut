@@ -28,7 +28,8 @@ public class Widget extends AppWidgetProvider {
     private static String tag = "WidgetTEST";
     public static final String ACTION_AUTO_UPDATE = "AUTO_UPDATE";
 
-    static SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMMM d, yyyy", Locale.US);
+
+    static SimpleDateFormat sdf2 = new SimpleDateFormat("EEEE \nMMMM d, yyyy", Locale.US);
     //String prefDays;
 
 
@@ -53,9 +54,9 @@ public class Widget extends AppWidgetProvider {
 
 
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget3);
 
-        views.setTextViewText(R.id.wTVDays, prefDays);
+        views.setTextViewText(R.id.wTVDays, prefDays +"\nDays Out" );
         views.setTextViewText(R.id.wTVResult, strEndDate);
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

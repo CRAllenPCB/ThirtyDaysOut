@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         String resultString = new String ("Will be " + strEndDate);
         result.setText(resultString);
         passYear = endC.get(Calendar.YEAR);
-        passMonth = endC.get(Calendar.MONTH)+1;
+        passMonth = endC.get(Calendar.MONTH);
         passDay =  endC.get(Calendar.DAY_OF_MONTH);
 
         Log.i(tag, "Year 1  "+ passYear);

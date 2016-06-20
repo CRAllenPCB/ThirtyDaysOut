@@ -20,7 +20,7 @@
     <string name="atc_tvStartTime">Start Time</string>
     <string name="atc_tvEndTime">End Time</string>
     <string name="atc_etStartTime">8:00 AM</string>
-    <string name="atc_etEndTime">10:00 AM</string>
+    <string name="atc_etEndTime">9:00 AM</string>
     <string name="atc_etDescrip">Enter a description for this event.</string>
     <string name="atc_tvDescription">Description</string>
     <string name="atc_tvEmail">Emails</string>

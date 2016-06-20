@@ -41,7 +41,7 @@ public class AddToCalendar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_to_calendar);
+        setContentView(R.layout.add_to_calendar);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
@@ -61,6 +61,7 @@ public class AddToCalendar extends AppCompatActivity {
         dateTV = (TextView)findViewById(R.id.tvDate);
         allDay = (CheckBox) findViewById(R.id.cbAllDay);
         setAppt=(Button) findViewById(R.id.bSetAppt);
+
 
         AllDayTrue();
 
@@ -188,6 +189,18 @@ public class AddToCalendar extends AppCompatActivity {
         Calendar calEndTime = Calendar.getInstance();
         Calendar dateCal = Calendar.getInstance();
         dateCal.setTimeInMillis(dateInMillisecs);
+        if(dateStartTime==null){
+            dateStartTime = Calendar.getInstance();
+            dateStartTime.set(Calendar.HOUR_OF_DAY, 8);
+            dateStartTime.set(Calendar.MINUTE, 0);
+            dateStartTime.set(Calendar.SECOND, 0);
+        }
+        if(dateEndTime==null){
+            dateEndTime = Calendar.getInstance();
+            dateEndTime.set(Calendar.HOUR_OF_DAY, 9);
+            dateEndTime.set(Calendar.MINUTE, 0);
+            dateEndTime.set(Calendar.SECOND, 0);
+        }
 
        // calBeginTime.set(dateCal.get(Calendar.YEAR), dateCal.get(Calendar.MONTH), dateCal.get(Calendar.DAY_OF_MONTH),
          //       dateStartTime.gcet(Calendar.HOUR_OF_DAY), dateStartTime.get(Calendar.MINUTE), 0);
@@ -202,6 +215,7 @@ public class AddToCalendar extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_INSERT)
                 .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY,allDayChecked)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calBeginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calEndTime.getTimeInMillis())
                 .putExtra(CalendarContract.Events.TITLE, title.getText().toString())
