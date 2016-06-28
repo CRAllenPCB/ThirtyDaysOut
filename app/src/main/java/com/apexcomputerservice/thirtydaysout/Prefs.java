@@ -1,16 +1,11 @@
 package com.apexcomputerservice.thirtydaysout;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Context;
+
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 /**
  * Created by Chris on 9/30/2015.

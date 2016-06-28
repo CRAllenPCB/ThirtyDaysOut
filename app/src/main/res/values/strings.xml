@@ -32,6 +32,9 @@
     -->
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
+    <!-- AdMob strings -->
+    <string name="banner_ad">ca-app-pub-4878199364012330/1415655204</string>
+
     <!-- Widget -->
     <string name="widget_tvDaysOut">Days Out</string>
 

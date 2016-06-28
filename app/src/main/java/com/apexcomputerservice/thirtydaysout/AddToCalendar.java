@@ -1,15 +1,11 @@
 package com.apexcomputerservice.thirtydaysout;
 
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,14 +25,10 @@ public class AddToCalendar extends AppCompatActivity {
     CheckBox allDay;
     Button setAppt;
     Boolean allDayChecked;
-    Calendar dateStartTime, dateEndTime, dateCal;
+    Calendar dateStartTime, dateEndTime;
     SimpleDateFormat sdfTime = new SimpleDateFormat("h:mm aa");
     long dateInMillisecs;
     int passedYear,passedMonth,passedDay;
-
-    private static String tag = "CalTEST";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +81,6 @@ public class AddToCalendar extends AppCompatActivity {
             passedYear = MainActivity.getInt("passYear");
             passedMonth = MainActivity.getInt("passMonth");
             passedDay = MainActivity.getInt("passDay");
-
-            Log.i(tag, "Year  "+ passedYear);
-            Log.i(tag, "Month  "+ passedMonth);
-            Log.i(tag, "Day  "+ passedDay);
-
         }
 
         setAppt.setOnClickListener(new View.OnClickListener() {
@@ -119,15 +106,6 @@ public class AddToCalendar extends AppCompatActivity {
                 getEndTimePicker(v);
             }
         });
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     public void getStartTimePicker(View view){
@@ -176,7 +154,7 @@ public class AddToCalendar extends AppCompatActivity {
         },hour, minute, false);
         mTimePicker.setTitle("Set End Time");
         mTimePicker.show();
-    };
+    }
 
     public void AllDayTrue(){
         startTime.setEnabled(false);
@@ -202,10 +180,7 @@ public class AddToCalendar extends AppCompatActivity {
             dateEndTime.set(Calendar.SECOND, 0);
         }
 
-       // calBeginTime.set(dateCal.get(Calendar.YEAR), dateCal.get(Calendar.MONTH), dateCal.get(Calendar.DAY_OF_MONTH),
-         //       dateStartTime.gcet(Calendar.HOUR_OF_DAY), dateStartTime.get(Calendar.MINUTE), 0);
-
-        calBeginTime.set(passedYear, passedMonth, passedDay,
+         calBeginTime.set(passedYear, passedMonth, passedDay,
                 dateStartTime.get(Calendar.HOUR_OF_DAY), dateStartTime.get(Calendar.MINUTE), 0);
 
 

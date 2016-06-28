@@ -8,11 +8,7 @@
         android:orderInCategory="1"
 
          />
-    <item
-        android:title="About Us"
-        android:id="@+id/aboutUs"
-        android:orderInCategory="2"
-        />
+
     <item
          android:title="Exit"
         android:id="@+id/exit"

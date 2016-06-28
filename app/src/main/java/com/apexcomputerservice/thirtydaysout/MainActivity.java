@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,13 +19,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMMM d, yyyy", Locale.US);
     int daysInt, passMonth, passYear, passDay;
     Date startDate;
-    long endInMilliseconds;
 
-    private static String tag = "CalTEST";
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+
 
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         days = (EditText) findViewById (R.id.etDays); // The number of days to add
         display = (TextView) findViewById (R.id.tvToday); // Display
         startDateTxt = (EditText) findViewById(R.id.etStartDate); //Start date
@@ -73,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         // *** Use the commented line below in real app ***
-        // AdRequest adRequest = new AdRequest.Builder().build();
-        AdRequest request = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+         AdRequest adRequest = new AdRequest.Builder().build();
+        // REMOVE TEST
+       // AdRequest request = new AdRequest.Builder()
+       //         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 // .addTestDevice("My MD5-hased ID for phone")
-                .build();
-        mAdView.loadAd(request);
+       //         .build();
+        mAdView.loadAd(adRequest);
 
         getStartDate();
         //Get preferences
@@ -168,9 +172,7 @@ public class MainActivity extends AppCompatActivity {
         passMonth = endC.get(Calendar.MONTH);
         passDay =  endC.get(Calendar.DAY_OF_MONTH);
 
-        Log.i(tag, "Year 1  "+ passYear);
-        Log.i(tag, "Month 1 "+ passMonth);
-        Log.i(tag, "Day 1 "+ passDay);
+
 
     }
 
@@ -180,11 +182,7 @@ public class MainActivity extends AppCompatActivity {
         a.putExtra("passYear", passYear);
         a.putExtra("passMonth", passMonth);
         a.putExtra("passDay", passDay);
-
-        //endInMilliseconds = endC.getTimeInMillis();
-        //a.putExtra("endMillisecs", endInMilliseconds);
         startActivity(a);
-
     }
 
     @Override
@@ -206,12 +204,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(this, Prefs.class);
                 startActivity(i);
                 return true;
-
-            case R.id.aboutUs:
-                //About uS SELECTED
-                Toast.makeText(this, "It is US!", Toast.LENGTH_SHORT).show();
-                return true;
-
             case R.id.exit:
                 //Exit selected
                 System.exit(0);
