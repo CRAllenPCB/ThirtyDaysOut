@@ -81,11 +81,10 @@
         android:layout_above="@+id/etDescrip"
         android:layout_alignLeft="@+id/cbAllDay"
         android:layout_alignStart="@id/cbAllDay"
+        android:columnCount="3"
+        android:rowCount="2"
 
-        android:id="@+id/gridLayout"
-
-
-        >
+        android:id="@+id/gridLayout">
 
         <TextView
             android:layout_width="wrap_content"

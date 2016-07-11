@@ -1,17 +1,22 @@
 package com.apexcomputerservice.thirtydaysout;
 
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +24,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +33,7 @@ import java.util.Locale;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMMM d, yyyy", Locale.US);
     int daysInt, passMonth, passYear, passDay;
     Date startDate;
+    ShareActionProvider mShareActionProvider;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -73,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
         startDateTxt = (EditText) findViewById(R.id.etStartDate); //Start date
         result = (TextView) findViewById(R.id.tvResult); // End date
         addToCal = (Button) findViewById(R.id.bAddCal); // Add to Calendar button
+
+
+
+
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         // *** Use the commented line below in real app ***
@@ -171,10 +184,9 @@ public class MainActivity extends AppCompatActivity {
         passYear = endC.get(Calendar.YEAR);
         passMonth = endC.get(Calendar.MONTH);
         passDay =  endC.get(Calendar.DAY_OF_MONTH);
-
-
-
     }
+
+
 
     public void addToCalendar(View view){
         Intent a = new Intent(this,AddToCalendar.class);
@@ -183,12 +195,32 @@ public class MainActivity extends AppCompatActivity {
         a.putExtra("passMonth", passMonth);
         a.putExtra("passDay", passDay);
         startActivity(a);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public Intent doShare() {
+        // populate the share intent with data
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Thirty Days Out is a great date calculator.\n"+getString(R.string.play_link);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Thirty Days Out");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        //startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        return sharingIntent;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Locate MenuItem with ShareActionProvider
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+
+        // Fetch and store ShareActionProvider
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        mShareActionProvider.setShareIntent(doShare());
+
         return true;
     }
 
@@ -199,6 +231,9 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch (id) {
+            case R.id.menu_item_share:
+                mShareActionProvider.setShareIntent(doShare());
+                return true;
             case R.id.preferences:
                 // Preferences selected
                 Intent i = new Intent(this, Prefs.class);

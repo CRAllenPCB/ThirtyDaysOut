@@ -9,6 +9,8 @@
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
 
+
+
     <!-- OLD SETTINGS
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

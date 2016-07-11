@@ -42,6 +42,8 @@ public class AddToCalendar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
             }
         });
 
@@ -53,6 +55,8 @@ public class AddToCalendar extends AppCompatActivity {
         dateTV = (TextView)findViewById(R.id.tvDate);
         allDay = (CheckBox) findViewById(R.id.cbAllDay);
         setAppt=(Button) findViewById(R.id.bSetAppt);
+
+
 
 
         AllDayTrue();
@@ -106,6 +110,13 @@ public class AddToCalendar extends AppCompatActivity {
                 getEndTimePicker(v);
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void getStartTimePicker(View view){

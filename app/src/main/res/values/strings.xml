@@ -21,10 +21,10 @@
     <string name="atc_tvEndTime">End Time</string>
     <string name="atc_etStartTime">8:00 AM</string>
     <string name="atc_etEndTime">9:00 AM</string>
-    <string name="atc_etDescrip">Enter a description for this event.</string>
+    <string name="atc_etDescrip">Description for this event.</string>
     <string name="atc_tvDescription">Description</string>
     <string name="atc_tvEmail">Emails</string>
-    <string name="atc_etEmail">Enter emails for event invite, separated by commas. bob@gmail.com,mom@gmail.com</string>
+    <string name="atc_etEmail">Emails for event invite,comma delimited. bob@gmail.com,mom@gmail.com</string>
     <string name="atc_bSetAppt">Set Appointment</string>
 
     <!--
@@ -37,6 +37,9 @@
 
     <!-- Widget -->
     <string name="widget_tvDaysOut">Days Out</string>
+
+    <!-- Play Link -->
+    <string name="play_link">https://play.google.com/store/apps/details?id=com.apexcomputerservice.thirtydaysout</string>
 
 
 </resources>
