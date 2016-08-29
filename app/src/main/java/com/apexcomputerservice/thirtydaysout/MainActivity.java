@@ -147,6 +147,12 @@ public class MainActivity extends AppCompatActivity {
         String prefDays = sharedPrefs.getString("daysPref", "");
         days.setText(prefDays);
         getDaysInt();
+
+        //Date format changed
+        String dateFormat = sharedPrefs.getString("pref_key_date","MMMM d, yyyy");
+        sdf = new SimpleDateFormat(dateFormat, Locale.US);
+        sdf2 = new SimpleDateFormat("EEE " + dateFormat, Locale.US);
+        getStartDateText();
         getEndDateText();
         // Intent to update widget
         Intent iw = new Intent(this,Widget.class);
@@ -239,9 +245,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(this, Prefs.class);
                 startActivity(i);
                 return true;
-            case R.id.exit:
-                //Exit selected
-                System.exit(0);
+            case R.id.about:
+                //About selected
+                Intent a = new Intent(this, About.class);
+                startActivity(a);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

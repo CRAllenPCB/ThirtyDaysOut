@@ -23,11 +23,11 @@ public class Widget extends AppWidgetProvider {
     public static final String ACTION_AUTO_UPDATE = "AUTO_UPDATE";
 
 
-    static SimpleDateFormat sdf2 = new SimpleDateFormat("EEEE \nMMMM d, yyyy", Locale.US);
+    SimpleDateFormat sdf2 = new SimpleDateFormat("EEEE \nMMMM d, yyyy", Locale.US);
     //String prefDays;
 
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+    void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId, String prefDays) {
 
 
@@ -74,6 +74,8 @@ public class Widget extends AppWidgetProvider {
         //Get number of days out from preferences
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         String prefDays = sharedPrefs.getString("daysPref","30");
+        String dateFormat = sharedPrefs.getString("pref_key_date","MMMM d, yyyy");
+        sdf2 = new SimpleDateFormat("EEEE \n"+dateFormat,Locale.US);
 
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {

@@ -6,6 +6,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.support.v7.widget.Toolbar;
 
 /**
  * Created by Chris on 9/30/2015.
@@ -14,6 +15,7 @@ import android.preference.PreferenceFragment;
 public class Prefs extends PreferenceActivity {
 
     boolean prefsChanged = false;
+    boolean dateFormatChanged = false;
     private OnDataPass mListener;
     public interface OnDataPass{public void onDataPass(boolean prefsChanged);
     }
@@ -49,8 +51,10 @@ public class Prefs extends PreferenceActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals("daysPref"))
-            getPreferenceScreen().getEditor().putBoolean("prefsChanged", true).apply();
+            if (key.equals("daysPref")){
+            getPreferenceScreen().getEditor().putBoolean("prefsChanged", true).apply();}
+            else if (key.equals("pref_key_date")){
+                getPreferenceScreen().getEditor().putBoolean("prefsChanged", true).apply();}
         }
     }
 }

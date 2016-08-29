@@ -2,7 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
     <EditTextPreference
         android:title="Days Preference"
         android:key="daysPref"
@@ -10,6 +9,20 @@
         android:defaultValue="30"
         android:inputType="number"
         />
+
+
+        <ListPreference
+            android:title="Date Display"
+            android:key="pref_key_date"
+            android:summary="Display pattern for dates"
+            android:entries="@array/date_options"
+            android:entryValues="@array/date_option_values"
+            android:defaultValue="@string/date_option_default_value"/>
+
+
+
+
+
 
 
 </PreferenceScreen>
